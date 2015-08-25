@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.danga.MemCached.SockIOPool" factory-method="getInstance"
+        init-method="initialize" destroy-method="shutDown">
+        <constructor-arg>
+            <value>my-memcachedPool</value>
+        </constructor-arg>
+        <property name="servers">
+            <list>
+                <value>172.16.50.238:11211</value>
+<!--                 <value>172.16.162.211:11211</value> -->
+<!--                 <value>172.16.20.46:41211</value> -->
+<!--                 <value>172.16.20.46:41212</value> -->
+<!--                 <value>172.16.20.46:41213</value> -->
+<!--                 <value>172.16.20.46:41214</value> -->
+<!--                 <value>172.16.20.46:41215</value> -->
+<!--                 <value>172.16.20.46:41216</value> -->
+<!--                 <value>172.16.20.46:41217</value> -->
+<!--                 <value>172.16.20.46:41218</value> -->
+<!--                 <value>172.16.20.46:41219</value> -->
+<!--                 <value>172.16.20.46:41220</value> -->
+<!--                 <value>172.16.20.46:41221</value> -->
+<!--                 <value>172.16.20.46:41222</value> -->
+<!--                 <value>172.16.20.46:41223</value> -->
+<!--                 <value>172.16.20.46:41224</value> -->
+<!--                 <value>172.16.20.46:41225</value> -->
+<!--                 <value>172.16.20.46:41226</value> -->
+            </list>
+        </property>
+        <!-- 初始化连接为20 -->
+        <property name="initConn">
+            <value>20</value>
+        </property>
+        <!-- 最小连接为5 -->
+        <property name="minConn">
+            <value>7</value>
+        </property>
+        <!-- 最大连接为100 -->
+        <property name="maxConn">
+            <value>10000</value>
+        </property>
+        <!-- 平衡线程休眠时间为30ms -->
+        <property name="maintSleep">
+            <value>30</value>
+        </property>
+        <!-- Nagle标志为false -->
+        <property name="nagle">
+            <value>false</value>
+        </property>
+        <!-- 响应超时时间为3000ms -->
+        <property name="socketTO">
+            <value>3000</value>
+        </property>
+    </bean>
+    <bean class="com.danga.MemCached.MemCachedClient">
+        <constructor-arg>
+            <value>my-memcachedPool</value>
+        </constructor-arg>
+    </bean>
+
+</beans>
